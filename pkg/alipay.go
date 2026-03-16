@@ -1,0 +1,35 @@
+package pkg
+
+import (
+	"fmt"
+
+	"strconv"
+
+	"github.com/smartwalle/alipay/v3"
+)
+
+func Alipay(OrderSn string, total float64) string {
+	var privateKey = "MIIEogIBAAKCAQEAsqv6A1GAivXENNGs0+znJHLwb5mq3NjU/W7cS4TOGJ6ZNTssrup8paGL2c4OiX2WXVPIOnxig3HTb34bEW6bFhILH11+LQvJWgsr62IfzqSIZvewL7aGl8FfP/kiFAlFiqUxdRwVdayeAO+n7Owd4KUIhAjeQ7X+s8Mb8M///UxiU8J+YqfN6lBXqWGjf1Htdh4YZg6A9+3kBIg1QICXczchNQmXUmpcNxHsKWkr9ZwEYf2ARM/LN9JyAZxzuJAk7T2bAlajlNo7SeVr0CfYCQlbGEk8eyalJJqaYJ0NMEPUzVVPD245AZkiM35pWakBIV0A7VgKYQSg48Hy9ADnywIDAQABAoIBAFAnuPSuJqWwlgJAInG8sQF4Ewdt/+ot2HeNuYSjorYGyKLJ1kTua1b+/zeKKplh3wglYwlh7ewcL4ewIkKSxT6Ef7rlfYqF5CHiKyThE3Xn+E2BRuhQ0VbZaHrRsIkek7UcYPCx1arB8uxml4ZBczHpt8VMGTJ1Pju1Bx7koWonjyZAIPcb9zRxgvAIidzhopU5ea5erBA87a7uUZWX6vz+UQlOvQwJ/E9FCw2mb9lMS2VqDGGd/Ok1SN2hutv4rHp1qceMhI96iaS9xsPpYd0zQe38tWYn8kwRbZgwrX4MrU2gu1lj2+M+ID9sanIUvzynbzqHz6svvuHeeHdDaOkCgYEA4um8roNmrfYvuZ2n4kQhJTaq+0A7nG3AecphcF24jGv/XS9sFUt6120HRbfHhrIhZq+DaoGlG55vP73/PsT2k4Ez706LEfB60VQuVPMyU07Va8TMhnLEKo/GOcdgp7OKT3uhnAJ1/0BmJwRD9TdNNR2Cdx7DsjfB37p4VCZuGUcCgYEAyZMt3PltxcUM1NFmlayY6od+D0LZuV7MW0upXRsNNTlXqyhQu8rhwiEO40Qogb/Q/DmVGu27o3oggeIkAdoH60Uz1mjDRR+UG9Yl4kQGVYDSSpWCGPKUMWN9BWTlCAJcclN8kwz5/aFz3yAJh3N9j4XR61GsreIpuIS1wICM/10CgYBj9kJHwt1OD6EwrRJTbF4Jrc6fBsn7/KGJRa2tOaxeOAl0PLrpmqnQE1jbzr1YSkrKmNFU7y4UP7SUqRezyEMz8fw2FSzQx1bjtqj+hXCLILSGWFkddZuTgGj79ShQWJi6sSUdvDvNKcqWr5tcgHNDze82mNfvP/7pl5UAxTlFawKBgFTyIye2LV5kle2xeQumOqLLCoKf52TI4FGw5uSHm99MFPfZ+3vIGa9XgxCfDnrvPMCt+3nnqWVQ+BYEGKx3F1M8TIYUjAW7Mw0wB7L8e7bYnMY1jye4Ql81z9/QDvx7Ej5TlHHbzBXoTg4/UAS21LkA6d/DAYQdhPtvYbCH++M5AoGAcRoYeDHLMa+rVYn6i7/NhfSG+Ody8KeSSj4tYA3oDkXPnflVr1/o/CCQ63PwqxqzDTXof/mT5lxcG5e7MPqPQokns9DsKuozlMUmVOctUHy16PfavRftC9UwQATLscn5Q1lzYR9FlzXxpMMz/GwmwioqLELfkfOhEdL9eJe53Rc=" // 必须，上一步中使用 RSA签名验签工具 生成的私钥
+	var appId = "9021000157679170"
+	client, err := alipay.New(appId, privateKey, false)
+	if err != nil {
+		return ""
+	}
+	var p = alipay.TradePagePay{}
+	p.NotifyURL = "http://211c77ae.r15.cpolar.top/notify/pay"
+	p.ReturnURL = "http://xxx"
+	p.Subject = "八维外卖"
+	p.OutTradeNo = OrderSn
+	p.TotalAmount = strconv.FormatFloat(total, 'f', 2, 64)
+	p.ProductCode = "FAST_INSTANT_TRADE_PAY"
+
+	url, err := client.TradePagePay(p)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// 这个 payURL 即是用于打开支付宝支付页面的 URL，可将输出的内容复制，到浏览器中访问该 URL 即可打开支付页面。
+	var payURL = url.String()
+	fmt.Println(payURL)
+	return payURL
+}

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./";
+
+message OrderAddReq {
+  int64 UserID = 1;
+  repeated OrderItem List = 4;
+}
+
+message OrderItem {
+  int64 goodsId = 1;  // 商品ID
+  int64 quantity = 2; // 购买数量
+}
+
+
+message OrderAddResp {
+  string orderSn = 1;  // 订单编号
+  float total = 2;     // 订单总金额
+  string payUrl = 3;   // 支付链接
+}
+
+message NotifyPayReq {
+}
+
+// 创建订单响应
+message NotifyPayResp {
+}
+
+service Order {
+  rpc OrderAdd(OrderAddReq) returns (OrderAddResp);
+  rpc NotifyPay(NotifyPayReq) returns (NotifyPayResp);
+}

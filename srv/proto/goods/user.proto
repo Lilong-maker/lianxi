@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./";
+
+message GoodsAddReq {
+  string name = 1;
+  fixed32 price = 2;
+  int64 num = 3;
+}
+
+message GoodsAddResp {
+  string msg = 1;
+  int64 code = 2;
+}
+
+
+message GoodsListReq {
+  int64 page = 1;
+  int64 pageSize = 2;
+}
+
+message GoodsListResp {
+  string msg = 1;
+  int64 code = 2;
+  repeated GoodsInfo data = 3;
+  int64 total = 4;
+}
+
+message GoodsInfo {
+  uint64 id = 1;
+  string name = 2;
+  float price = 3;
+  int64 num = 4;
+  string createdAt = 5;
+}
+
+
+
+message GoodsUpdateReq {
+  uint64 id = 1;
+  string name = 2;
+  float price = 3;
+  int64 num = 4;
+}
+
+message GoodsUpdateResp {
+  string msg = 1;
+  int64 code = 2;
+}
+
+
+message GoodsDeleteReq {
+  uint64 id = 1;
+}
+
+message GoodsDeleteResp {
+  string msg = 1;
+  int64 code = 2;
+}
+
+service Goods {
+  rpc GoodsAdd(GoodsAddReq) returns (GoodsAddResp);
+  rpc GoodsList(GoodsListReq) returns (GoodsListResp);
+  rpc GoodsUpdate(GoodsUpdateReq) returns (GoodsUpdateResp);
+  rpc GoodsDelete(GoodsDeleteReq) returns (GoodsDeleteResp);
+}
