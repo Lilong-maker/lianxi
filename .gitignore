@@ -32,4 +32,6 @@ go.work.sum
 
 # env file
 .env
+go.mod
+go.sum
 
