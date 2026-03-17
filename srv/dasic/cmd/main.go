@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"lianxi/srv/dasic/config"
 	"lianxi/srv/dasic/inits"
 	"lianxi/srv/handler/service/goods"
 	"lianxi/srv/handler/service/order"
@@ -27,7 +26,7 @@ func main() {
 		log.Fatalf("Consul初始化失败: %v", err)
 	}
 	log.Println("Consul初始化成功")
-	services, err := inits.GetServiceWithLoadBalancer(config.Gen.Consul.ServiceName)
+	services, err := inits.GetServiceWithLoadBalancer("service")
 	if err != nil {
 		log.Printf("获取用户服务失败: %v", err)
 	} else {

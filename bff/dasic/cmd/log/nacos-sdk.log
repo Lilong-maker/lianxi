@@ -1,0 +1,13 @@
+2026-03-17T20:02:56.490+0800	WARN	cache/disk_cache.go:193	read Config Content failed. cause file doesn't exist, file path: C:\Users\Lenovo\Desktop\lianxi\bff\dasic\cmd\cache\config\order@@dev@@_failover.
+2026-03-17T20:02:56.492+0800	INFO	rpc/rpc_client.go:157	init rpc client for name %!(EXTRA string=config-0-5b470fc4-fc06-486e-8b84-38c95332d834)
+2026-03-17T20:02:56.492+0800	INFO	rpc/rpc_client.go:166	get app conn labels from client config map[] 
+2026-03-17T20:02:56.492+0800	INFO	rpc/rpc_client.go:168	get app conn labels from env map[] 
+2026-03-17T20:02:56.492+0800	INFO	rpc/rpc_client.go:171	final app conn labels : map[] 
+2026-03-17T20:02:56.498+0800	INFO	rpc/rpc_client.go:327	[RpcClient.Start] config-0-5b470fc4-fc06-486e-8b84-38c95332d834 try to connect to server on start up, server: {serverIp:115.190.43.83 serverPort:8848 serverGrpcPort:9848}
+2026-03-17T20:02:56.498+0800	INFO	rpc/grpc_client.go:175	check tls config %!(EXTRA *constant.TLSConfig=&{false false false    })
+2026-03-17T20:02:56.498+0800	INFO	rpc/grpc_client.go:180	try to get tls config from env
+2026-03-17T20:02:56.498+0800	INFO	rpc/grpc_client.go:189	 tls config from env is not enable
+2026-03-17T20:02:56.512+0800	INFO	util/common.go:96	Local IP:192.168.65.69
+2026-03-17T20:02:56.780+0800	INFO	rpc/rpc_client.go:337	config-0-5b470fc4-fc06-486e-8b84-38c95332d834 success to connect to server {serverIp:115.190.43.83 serverPort:8848 serverGrpcPort:9848} on start up, connectionId=1773748975083_223.160.153.122_57346
+2026-03-17T20:02:56.780+0800	INFO	rpc/rpc_client.go:487	config-0-5b470fc4-fc06-486e-8b84-38c95332d834 notify connected event to listeners , connectionId=1773748975083_223.160.153.122_57346
+2026-03-17T20:02:56.780+0800	INFO	config_client/config_connection_event_listener.go:38	[ConfigConnectionEventListener] connect to config server for taskId: 0

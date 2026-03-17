@@ -11,12 +11,6 @@ Redis:
   Password: "4ay1nkal3u8ed77y"
   Database: 0
 
-Consul:
-  Host: "115.190.43.83"
-  Port: 8500
-  ServiceName: "order-service"
-  ServicePort: 50051
-  TTL: 10
 
 Nacos:
   Addr: "115.190.43.83"

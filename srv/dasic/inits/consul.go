@@ -2,7 +2,6 @@ package inits
 
 import (
 	"fmt"
-	"lianxi/srv/dasic/config"
 	"log"
 	"math/rand"
 	"sync"
@@ -22,25 +21,25 @@ var (
 
 func ConsulInit() error {
 	consulConfig := api.DefaultConfig()
-	consulConfig.Address = fmt.Sprintf("%s:%d", config.Gen.Consul.Host, config.Gen.Consul.Port)
+	consulConfig.Address = fmt.Sprintf("%s:%d", "115.190.43.83", 8500)
 	var err error
 	if consulClient, err = api.NewClient(consulConfig); err != nil {
 		return fmt.Errorf("创建Consul客户端失败: %w", err)
 	}
 
 	serviceCache = make(map[string][]*api.AgentService)
-	serviceID = fmt.Sprintf("%s-%d", config.Gen.Consul.ServiceName, time.Now().Unix())
+	serviceID = fmt.Sprintf("%s-%d", "service", time.Now().Unix())
 	checkID := fmt.Sprintf("%s-health", serviceID)
 	registration := &api.AgentServiceRegistration{
 		ID:      serviceID,
-		Name:    config.Gen.Consul.ServiceName,
+		Name:    "service",
 		Address: "localhost",
-		Port:    config.Gen.Consul.ServicePort,
+		Port:    8500,
 		Checks: []*api.AgentServiceCheck{
 			{
 				CheckID:                        checkID,
 				Name:                           "TTL Health Check",
-				TTL:                            fmt.Sprintf("%ds", config.Gen.Consul.TTL),
+				TTL:                            fmt.Sprintf("%ds", 10),
 				DeregisterCriticalServiceAfter: "1m",
 			},
 		},
@@ -49,7 +48,7 @@ func ConsulInit() error {
 		return fmt.Errorf("注册服务失败: %w", err)
 	}
 	go func() {
-		ticker := time.NewTicker(time.Duration(config.Gen.Consul.TTL/2) * time.Second)
+		ticker := time.NewTicker(time.Duration(10/2) * time.Second)
 		defer ticker.Stop()
 		for _ = range ticker.C {
 			if err := consulClient.Agent().UpdateTTL(checkID, "服务正常", api.HealthPassing); err != nil {

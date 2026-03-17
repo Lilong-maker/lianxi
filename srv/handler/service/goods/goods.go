@@ -116,7 +116,6 @@ func (s *Server) GoodsDelete(_ context.Context, in *__.GoodsDeleteReq) (*__.Good
 			Code: 404,
 		}, nil
 	}
-
 	err = goods.GoodsDelete(config.DB)
 	if err != nil {
 		return &__.GoodsDeleteResp{
@@ -124,7 +123,6 @@ func (s *Server) GoodsDelete(_ context.Context, in *__.GoodsDeleteReq) (*__.Good
 			Code: 500,
 		}, nil
 	}
-
 	return &__.GoodsDeleteResp{
 		Msg:  "删除成功",
 		Code: 200,

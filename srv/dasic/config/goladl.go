@@ -4,7 +4,6 @@ type AppConfig struct {
 	Mysql
 	Redis
 	Nacos
-	Consul
 }
 type Mysql struct {
 	Host     string
@@ -26,12 +25,4 @@ type Nacos struct {
 	Namespace string
 	DataID    string
 	Group     string
-}
-
-type Consul struct {
-	Host        string
-	Port        int
-	ServiceName string
-	ServicePort int
-	TTL         int
 }
