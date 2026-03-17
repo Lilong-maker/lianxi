@@ -1,4 +1,4 @@
-module lianxi
+module github.com/Lilong-maker/lianxi
 
 go 1.25.8
 
