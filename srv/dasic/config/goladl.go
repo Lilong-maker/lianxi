@@ -5,8 +5,6 @@ type AppConfig struct {
 	Redis
 	Nacos
 	Consul
-	AliPay
-	//RabbitMQ
 }
 type Mysql struct {
 	Host     string
@@ -28,8 +26,6 @@ type Nacos struct {
 	Namespace string
 	DataID    string
 	Group     string
-	//Username  string
-	//Password  string
 }
 
 type Consul struct {
@@ -38,18 +34,4 @@ type Consul struct {
 	ServiceName string
 	ServicePort int
 	TTL         int
-}
-
-//	type RabbitMQ struct {
-//		Host     string
-//		Port     int
-//		User     string
-//		Password string
-//		Vhost    string
-//	}
-type AliPay struct {
-	PrivateKey string
-	AppId      string
-	NotifyURL  string
-	ReturnURL  string
 }

@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	RabbitMQ.SendStockDeductMsg("111", 1)
+	RabbitMQ.SendStockDeductMsg("香蕉", 2)
 }

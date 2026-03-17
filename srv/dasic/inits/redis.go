@@ -22,5 +22,9 @@ func RedisInit() {
 		Password: RedisConfig.Password, // no password set
 		DB:       RedisConfig.Database, // use default DB
 	})
+	err := Rdb.Ping(Ctx).Err()
+	if err != nil {
+		return
+	}
 	fmt.Println("redis连接成功")
 }

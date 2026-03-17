@@ -22,10 +22,12 @@ message OrderAddResp {
 }
 
 message NotifyPayReq {
+
 }
 
 // 创建订单响应
 message NotifyPayResp {
+
 }
 
 service Order {

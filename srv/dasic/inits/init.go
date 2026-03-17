@@ -40,12 +40,6 @@ func MysqlInit() {
 	// Auto-migrate multiple domain models to ensure schema is up-to-date
 	err = config.DB.AutoMigrate(
 		&model.Goods{},
-		&model.Product{},
-		&model.Inventory{},
-		&model.Logistics{},
-		&model.Member{},
-		&model.MemberLevel{},
-		&model.Points{},
 		&model.Order{},
 		&model.OrderItem{},
 	)
